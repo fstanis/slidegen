@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<presentation xmlns:sfa="http://developer.apple.com/namespaces/sfa" xmlns:sf="http://developer.apple.com/namespaces/sf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:key="http://developer.apple.com/namespaces/keynote2" key:version="92008102400" key:play-mode="interactive" key:kiosk-slide-delay="5" key:kiosk-build-delay="2" key:idle-timer-active="false" key:mode="once">
+
+	<size sfa:w="{{width}}" sfa:h="{{height}}" />
+
+	<theme-list>
+		<theme key:name="Default" key:group-uuid="666B202E-F9BB-4CA4-B8B2-C09B05ADD8EC" key:decimal-tab=".">
+			<master-slides>
+				<master-slide key:name="Empty">
+					<body-placeholder />
+				</master-slide>
+			</master-slides>
+		</theme>
+	</theme-list>
+
+	<slide-list>
+		{% for video in videos %}
+		<slide sfa:ID="BGSlide-{{loop.index}}" key:depth="0">
+			<stylesheet>
+				<sf:styles>
+					<slide-style sfa:ID="slide-style-{{loop.index}}">
+						<sf:property-map>
+							<sf:fill>
+								<sf:color xsi:type="sfa:calibrated-rgb-color-type" sfa:r="0" sfa:g="0" sfa:b="0" sfa:a="1" sfa:sfclass="color" />
+							</sf:fill>
+						</sf:property-map>
+					</slide-style>
+				</sf:styles>
+			</stylesheet>
+			<style-ref sfa:IDREF="slide-style-{{loop.index}}" />
+			<page>
+				<geometry>
+					<naturalSize sfa:w="0" sfa:h="0" />
+					<size sfa:w="0" sfa:h="0" />
+					<position sfa:x="0" sfa:y="0" />
+				</geometry>
+				<layers>
+					<layer>
+						<type>
+							<string sfa:string="BGSlideForegroundLayer" />
+						</type>
+						<drawables>
+							<media sfa:ID="sf:media-{{loop.index}}">
+								<geometry sf:sizesLocked="true" sf:aspectRatioLocked="true">
+									<naturalSize sfa:w="{{video.dimensions.width}}" sfa:h="{{video.dimensions.height}}" />
+									<size sfa:w="{{video.dimensions.width}}" sfa:h="{{video.dimensions.height}}" />
+									<position sfa:x="{{video.dimensions.x}}" sfa:y="{{video.dimensions.y}}" />
+								</geometry>
+								<content>
+									<movie-media sf:muted="true" sf:volume="1" sf:end-time="{{video.duration}}" sf:poster="0" sf:looping="no">
+										<self-contained-movie>
+											<main-movie sf:path="{{video.filename}}" sf:displayname="{{video.filename}}" sf:size="{{video.size}}" />
+										</self-contained-movie>
+										<poster-image>
+											<size sfa:w="1920" sfa:h="1080" />
+											<data sf:path="posterImage.png" sf:displayname="posterImage.png" sf:size="39038" />
+										</poster-image>
+									</movie-media>
+								</content>
+							</media>
+						</drawables>
+					</layer>
+				</layers>
+			</page>
+			<events>
+				<build key:chunking="0" key:duration="0.5">
+					<info-ref sfa:IDREF="sf:media-{{loop.index}}" />
+					<style key:type="apple:movie-start">
+						<animationType>
+							<number sfa:number="1" sfa:type="q" sfa:sfclass="number" />
+						</animationType>
+					</style>
+				</build>
+			</events>
+			<sticky-notes />
+			<notes sf:layoutstyle="layout-style-default">
+				<text-storage sf:kind="note">
+					<text-body>
+						{{video.notes | safe}}
+					</text-body>
+				</text-storage>
+			</notes>
+		</slide>
+		{% endfor %}
+	</slide-list>
+
+	<ui-state />
+
+	<metadata />
+
+	<custom-cell-formats />
+
+</presentation>
