@@ -51,6 +51,6 @@ async function loadConfig () {
 loadConfig()
   .then(config => generateDeck(config, commander.output))
   .catch(err => {
-    console.error(err);
+    console.error(err.message);
     process.exit(1);
   });

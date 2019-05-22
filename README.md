@@ -4,9 +4,11 @@ Generates a slide deck from the given video(s).
 
 ## Installation
 
-```shell
-npm i -g slidegen
-```
+1. Make sure FFmpeg is installed. See [Download FFmpeg](https://ffmpeg.org/download.html)
+for more information.
+
+2. Install using `npm i -g slidegen`. Alternatively, you can use `npx` to run
+without installing globally.
 
 ## Usage
 
@@ -27,5 +29,5 @@ videos:
 Then run `slidegen`.
 
 ```shell
-slidegen -c config.yaml -o output.key
+npx slidegen -c config.yaml -o output.key
 ```

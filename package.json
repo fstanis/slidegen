@@ -1,6 +1,6 @@
 {
   "name": "slidegen",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "slidegen generates presentation slides from videos",
   "main": "index.js",
   "bin": {
@@ -18,10 +18,18 @@
     "name": "Filip Stanis",
     "url": "https://stanis.me/"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fstanis/slidegen.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fstanis/slidegen/issues"
+  },
   "license": "Apache-2.0",
   "dependencies": {
     "adm-zip": "^0.4.13",
     "commander": "^2.20.0",
+    "js-yaml": "^3.13.1",
     "nunjucks": "^3.2.0",
     "rimraf": "^2.6.3"
   }
